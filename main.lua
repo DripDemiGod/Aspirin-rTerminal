@@ -2,6 +2,7 @@ local start = tick()
 local client = game:GetService('Players').LocalPlayer;
 local usedCache = shared.__urlcache and next(shared.__urlcache) ~= nil
 
+--http stuff
 shared.__urlcache = shared.__urlcache or {}
 local function urlLoad(url)
     local success, result
