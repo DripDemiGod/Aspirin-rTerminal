@@ -1,3 +1,25 @@
+--[[
+    ------------------
+FUNCTION DOCUMENTATION FOR NOW:
+ALL FUNCTIONS MUST PASS THE 'Commands' TABLE AS THE FIRST ARGUMENT.
+FAILING TO DO THIS WILL CAUSE AN ERROR.
+This is because the 'help' command requires the 'Commands' table to be passed, since this was in early development of the- 
+rTerminal, the 'Commands' table was made mandatory for all functions thinking it wouldn't be a big deal. Now it just seems-
+unnecessary.
+Possible Solutions:
+-Experimentation with the 'pcall()' function should be done to ensure the terminal remains in-case of an error.
+-Exemptions via an arugment handler logic module. (More about this below.)
+    ------------------
+
+To-Do:
+-Function argument handler logic in main function interpreter block. (allows arguments to be passed via commands. i.e 'add 1 3')
+
+Known Problems:
+-After an error, attempting to re-execute rTerminal in the same roblox instance will cause it to print out the entire script
+source and become unresponsive. Have literally ZERO idea why this happens, possibly a Synapse issue since rconsole isn't
+used an awful lot for command intake. This is more of a reason to attempt to baby proof key elements via 'pcall()'.
+]]
+
 if not syn then kick("\nUnsupported Exploit.\nrTerminal is for Synapse - X\nONLY") end
 local start = tick()
 local running = true
@@ -33,10 +55,19 @@ local function urlLoad(url)
     shared.__urlcache[url] = result
     return unpack(results, 2)
 end
-
+local settings;
 local metadata = urlLoad("https://raw.githubusercontent.com/DripDemiGod/Asprin-rTerminal/main/metadata.lua")
+local meta_version = metadata.version
+local meta_message = metadata.message
+local meta_updated = metadata.updated
+
 local httpService = game:GetService('HttpService')
 
+if loadfile("rterminal.config") then
+    settings = loadfile("rterminal.config") --We found an existing config file.
+else
+    settings = writefile("rterminal.config") --No config file found, creating one instead.
+end
 --Command Functions
 local function help(ctable)
 	print("Here is a list of available commands: ")
@@ -94,11 +125,12 @@ local function inputFunc()
         end
     end
 end
-rconsolename("rTerminal ver: ".. metadata.version)
+rconsolename("rTerminal ver: ".. meta_version)
 rconsoleprint(string.format('Loaded script in %.4f second(s)!', tick() - start, 3))
-rconsoleprint("\nVersion: ".. metadata.version)
-rconsoleprint("\nLastest Updated: ".. metadata.updated)
-rconsoleprint("\n".. metadata.message)
+rconsoleprint("\nVersion: ".. meta_version)
+rconsoleprint("\nLastest Updated: ".. meta_updated)
+rconsoleprint("\n".. meta_message)
+rconsoleprint("Important Announcements can be found here.")
 rconsoleprint("Use the 'clear' command to clear this message.")
 rconsoleprint("You can turn these off by default in the 'rterminal.config' file.")
 rconsoleprint("------------------------------------------------------------------")
