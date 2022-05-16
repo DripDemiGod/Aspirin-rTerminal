@@ -18,6 +18,7 @@ Known Problems:
 -After an error, attempting to re-execute rTerminal in the same roblox instance will cause it to print out the entire script
 source and become unresponsive. Have literally ZERO idea why this happens, possibly a Synapse issue since rconsole isn't
 used an awful lot for command intake. This is more of a reason to attempt to baby proof key elements via 'pcall()'.
+'DRIP GOD WAS HERE BITCH'
 ]]
 
 if not syn then kick("\nUnsupported Exploit.\nrTerminal is for Synapse - X\nONLY") end
