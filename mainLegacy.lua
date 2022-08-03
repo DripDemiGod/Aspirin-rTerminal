@@ -1,9 +1,14 @@
 --[[
+EVERYTHING HERE HAS BEEN DISCONTINUED, A REVISION HAS BEEN STARTED.
+(will be coming back here for some notes later probs idk lol)
+
+
+
     ------------------
 FUNCTION DOCUMENTATION FOR NOW:
 ALL FUNCTIONS MUST PASS THE 'Commands' TABLE AS THE FIRST ARGUMENT.
 FAILING TO DO THIS WILL CAUSE AN ERROR.
-This is because the 'help' command requires the 'Commands' table to be passed, since this was in early development of the- 
+This is because the 'help' command requires the 'Commands' table to be passed, since this was in early development of the-
 rTerminal, the 'Commands' table was made mandatory for all functions thinking it wouldn't be a big deal. Now it just seems-
 unnecessary.
 Possible Solutions:
@@ -97,13 +102,13 @@ end
 local Commands = {
 	["help"] = {help, "'help': Gives brief information about the terminal and returns all commands available."},
 	["add"] = {add, "'add': Requires 2 varaibles. Adds them together and prints the output."},
-    ["clear"] = {clear, "'clear': Clears the rTerminal console."},
-    ["quit"] = {quit, "'quit': Closes the terminal and terminates the script."}
+  ["clear"] = {clear, "'clear': Clears the rTerminal console."},
+  ["quit"] = {quit, "'quit': Closes the terminal and terminates the script."}
 }
 
 --[[
 --Console Input Simulation
-local commandInput = "Help" --The input that is being simulated.  
+local commandInput = "Help" --The input that is being simulated.
 --Sterilization
 commandInput = tostring(commandInput) --Needed to prevent ':lower()' from erroring incase user inputs an integer.
 commandInput = commandInput:lower()
