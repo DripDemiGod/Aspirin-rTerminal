@@ -2,7 +2,7 @@
 --Now going to be making a more modular system to make things not only more clean by easier for others to make their own commands.
 
 --For now, don't try this on anything other than Synapse as it simply will not work! (who am I kidding im writing this on a macbook rn)
-
+--Not even started yet so don't execute anyway.
 
 --Makes it easier to import other systems if needed. (MUST BE LOCALIZED IN REPOSITORY)
 local function import(file)

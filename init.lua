@@ -10,3 +10,22 @@
 
 
 --BRUH WHY AM I EVEN DOING THIS NOW I CAN'T EVEN TEST IF IT WORKS IM ON A FKN MACBOOK FFS
+
+
+--METATABLE COMMANDS METHOD
+local commandsTable = {
+
+	example = function()
+		print("This is an example function!")
+	end,
+
+	example2 = function()
+		print("And this is another example!")
+	end
+
+}
+
+local commands = setmetatable(commandsTable, {__index = function(tb, key) return function() print("Command not found!") end end})
+
+commands["example"]() --prints "This is an example function!"
+commands["cake"]() --prints "Command not found!"
